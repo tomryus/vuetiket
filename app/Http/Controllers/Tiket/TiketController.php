@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Category;
+namespace App\Http\Controllers\Tiket;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class TiketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $tiket = \App\Model\Category\Category::all();
-
-        return response()->json([
-
-            'data' => $tiket,
-            'pesan' => 'sukses ditampilkan',
-        ],201);
+        //
     }
 
     /**

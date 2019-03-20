@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Category;
+namespace App\Http\Controllers\Transaction;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Transaction\TransactionResource;
+use App\Model\Transaction\Transaction;
 
-class CategoryController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +16,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $tiket = \App\Model\Category\Category::all();
-
-        return response()->json([
-
-            'data' => $tiket,
-            'pesan' => 'sukses ditampilkan',
-        ],201);
+        $transaction = Transaction::paginate(5);
+        return TransactionResource::collection($transaction);
+        //return response()->json([
+        //    'data' => $transaction,
+        //    'pesan' => 'data berhasil ditampilkan',
+        //],201);
     }
 
     /**
@@ -41,7 +42,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transactionSave = Transaction::create($request->all());
+        return response(new TransactionResource($transactionSave)); //yang ditampilkan dibuat sesuai dengan transactionResource
+        //return response()->json([
+        //    'data' => $transactionSave,
+        //    'pesan' => 'sukses ditambah',
+        //]);
     }
 
     /**

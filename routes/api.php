@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('category', 'Category\CategoryController');
+Route::resource('transaction', 'Transaction\TransactionController');

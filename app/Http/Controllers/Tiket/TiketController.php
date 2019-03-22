@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Tiket;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use \App\Model\Tiket\Tiket;
+use \App\Http\Resources\Tiket\TiketResource;
 
 class TiketController extends Controller
 {
@@ -14,7 +16,8 @@ class TiketController extends Controller
      */
     public function index()
     {
-        //
+        $tiketshow = Tiket::paginate(5);
+        return TiketResource::collection($tiketshow);
     }
 
     /**
@@ -35,7 +38,8 @@ class TiketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tiketsave = tiket::create($request->all());
+        return response(new TiketResource($tiketsave));
     }
 
     /**
@@ -67,9 +71,11 @@ class TiketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tiket $tiket)
     {
-        //
+        $tiket->update($request->all());
+        return response('updated',new TiketResource($tiket));
+        
     }
 
     /**
@@ -78,8 +84,9 @@ class TiketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( tiket $tiket)
     {
-        //
+        $tiket->delete();
+        return response('deleted');
     }
 }

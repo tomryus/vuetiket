@@ -56,9 +56,9 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(transaction $transaction)
     {
-        //
+        return response($transaction);
     }
 
     /**
@@ -79,9 +79,10 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $Category)
     {
-        //
+        $Category->UPDATE($request->all());
+        return response('updated');
     }
 
     /**

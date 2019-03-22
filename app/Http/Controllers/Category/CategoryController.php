@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use \App\Model\Category\Category;
+use \App\Http\Resources\Category\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -14,13 +16,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $tiket = \App\Model\Category\Category::all();
+        $categoryshow = Category::paginate(5);
+        return CategoryResource::collection($categoryshow);
 
-        return response()->json([
-
-            'data' => $tiket,
-            'pesan' => 'sukses ditampilkan',
-        ],201);
+        //return response()->json([
+        //
+        //    'data' => $tiket,
+        //    'pesan' => 'sukses ditampilkan',
+        //],201);
     }
 
     /**
@@ -41,7 +44,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Categorysave = Category::create($request->all());
+        return response(new CategoryResource($Categorysave));
     }
 
     /**
@@ -50,9 +54,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $Category)
     {
-        //
+        return new CategoryResource($Category);
     }
 
     /**
@@ -73,9 +77,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $Category)
     {
-        //
+        $Category->UPDATE($request->all());
+        return new CategoryResource($Category);
     }
 
     /**
@@ -84,8 +89,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $Category)
     {
-        //
+        $Category->delete();
+        return response('deleted', Response::HTTP_OK);
+
     }
 }

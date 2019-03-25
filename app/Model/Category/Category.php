@@ -8,7 +8,7 @@ use \App\Model\Tiket\Tiket;
 class Category extends Model
 {
     public function Tikets(){
-        return $this->hasMany(Tiket::class, 'id_category','id');
+        return $this->belongsToMany(Tiket::class, 'id_category','id');
     }
 
     protected $fillable =[

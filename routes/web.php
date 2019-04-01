@@ -15,6 +15,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::get('{any}', 'HomeController@index');
-
+Route::get('/{any}', 'HomeController@index');
+Route::get('/{any}/{any2}', 'HomeController@index');
+Route::get('/{any}/{any2}/{any3}', 'HomeController@index');
 

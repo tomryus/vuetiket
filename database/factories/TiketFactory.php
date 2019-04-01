@@ -8,7 +8,7 @@ $factory->define(App\Model\Tiket\Tiket::class, function (Faker $faker) {
     return [
         'nama_tiket' => $isian,
         'harga_tiket' => rand(1,100000),
-        'jenis_tiket' => $isian,
+        'qty' => rand(1,100000),
         'id_category' => function(){
             //konektor ke tabel category
             return Category::all()->random();

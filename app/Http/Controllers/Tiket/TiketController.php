@@ -16,7 +16,7 @@ class TiketController extends Controller
      */
     public function index()
     {
-        $tiketshow = Tiket::paginate(5);
+        $tiketshow = Tiket::all();
         return TiketResource::collection($tiketshow);
     }
 
@@ -48,9 +48,9 @@ class TiketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(tiket $tiket)
     {
-        //
+        return new TiketResource($tiket);
     }
 
     /**
@@ -73,8 +73,8 @@ class TiketController extends Controller
      */
     public function update(Request $request, Tiket $tiket)
     {
-        $tiket->update($request->all());
-        return response('updated',new TiketResource($tiket));
+        $tiket->UPDATE($request->all());
+        return response(new TiketResource($tiket));
         
     }
 

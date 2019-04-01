@@ -7,7 +7,8 @@ use \App\Model\Category\category;
 
 class Tiket extends Model
 {
-    protected $guarded= [];
+    //protected $guarded= [];
+    protected $fillable = ['nama_tiket', 'harga_tiket', 'id_category', 'qty'];
     public function Categories(){
         return $this->belongsTo(Category::class,'id_category','id');
     }

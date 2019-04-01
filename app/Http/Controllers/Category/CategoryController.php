@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoryshow = Category::paginate(5);
+        $categoryshow = Category::latest()->get();
         return CategoryResource::collection($categoryshow);
 
         //return response()->json([
@@ -92,7 +92,7 @@ class CategoryController extends Controller
     public function destroy(Category $Category)
     {
         $Category->delete();
-        return response('deleted', Response::HTTP_OK);
+        return response('deleted');
 
     }
 }

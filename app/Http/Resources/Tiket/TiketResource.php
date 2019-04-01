@@ -17,10 +17,12 @@ class TiketResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'nama_tiket' => $this->nama_tiket,
-            'harga_tiket' => $this->harga_tiket,
-            'jenis_tikett' => $this->jenis_tiket,
-            'id_category' => $this->Categories->nama_category,
+            'id'            => $this->id,
+            'nama_tiket'    => $this->nama_tiket,
+            'harga_tiket'   => $this->harga_tiket,
+            'qty'           => $this->qty,
+            'id_category'   => $this->Categories->id,
+            'nama_category' => $this->Categories->nama_category,
         ];
         //return parent::toArray($request);
     }

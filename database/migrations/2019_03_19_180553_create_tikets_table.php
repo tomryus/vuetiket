@@ -17,7 +17,7 @@ class CreateTiketsTable extends Migration
             $table->increments('id');
             $table->string('nama_tiket');
             $table->integer('harga_tiket');
-            $table->string('jenis_tiket');
+            $table->integer('qty');
             $table->integer('id_category')->unsigned()->nullable();
             $table->timestamps();
 

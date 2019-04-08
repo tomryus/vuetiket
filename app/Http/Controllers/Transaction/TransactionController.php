@@ -16,7 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::paginate(5);
+        $transaction = Transaction::where('status','tertunda')->latest()->get();
+
         return TransactionResource::collection($transaction);
         //return response()->json([
         //    'data' => $transaction,
@@ -79,10 +80,13 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $Category)
+    public function update()
     {
-        $Category->UPDATE($request->all());
-        return response('updated');
+        $transaction = Transaction::where('status','tertunda');
+        $transaction->update(['status'=>'sukses']);
+        return response()->json([
+            'pesan' => 'berhasil di update'
+        ]);
     }
 
     /**

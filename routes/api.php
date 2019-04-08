@@ -18,5 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('category', 'Category\CategoryController');
+Route::get('transaction/update','Transaction\TransactionController@update');
 Route::resource('transaction', 'Transaction\TransactionController');
 Route::resource('tiket', 'Tiket\TiketController');
+Route::get('transaction/update','Transaction\TransactionController@update');

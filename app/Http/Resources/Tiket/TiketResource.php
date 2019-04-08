@@ -23,6 +23,7 @@ class TiketResource extends JsonResource
             'qty'           => $this->qty,
             'id_category'   => $this->Categories->id,
             'nama_category' => $this->Categories->nama_category,
+            
         ];
         //return parent::toArray($request);
     }

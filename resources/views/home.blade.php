@@ -7,6 +7,7 @@
             <div class="card card-default">
                 
                 <div class="card-body">
+                    
                     <router-view></router-view>       
                 </div>
             </div>

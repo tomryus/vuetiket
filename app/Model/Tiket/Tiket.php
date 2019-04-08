@@ -4,6 +4,7 @@ namespace App\Model\Tiket;
 
 use Illuminate\Database\Eloquent\Model;
 use \App\Model\Category\category;
+use \App\Model\Transaction\Transaction;
 
 class Tiket extends Model
 {
@@ -12,7 +13,7 @@ class Tiket extends Model
     public function Categories(){
         return $this->belongsTo(Category::class,'id_category','id');
     }
-    public function Users(){
-        return $this->belongsto('App\User','foreign key', 'other key');
+    public function transaction(){
+        return $this->hasMany(Transaction::class, 'tiket_id', 'id');
     }
 }

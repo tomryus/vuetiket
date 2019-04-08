@@ -15,12 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('tiket_id')->unsigned()->nullable();
             $table->enum('status',['sukses','tertunda','gagal']);
             $table->string('qty');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('tiket_id')->references('id')->on('tikets');
         });
     }
 

@@ -16,9 +16,13 @@ class TransactionResource extends JsonResource
     {
         //memilih data yang mau ditampilkan
         return [
-            'id' => $this->id, //'id' bisa diganti & $this->id itu mengambil data dari entiti ID pada tabel transaksi
-            'user_id' => $this->user_id,
-            'status' => $this->status,
+            'id'         => $this->id, //'id' bisa diganti & $this->id itu mengambil data dari entiti ID pada tabel transaksi
+            'tiket_id'   => $this->tiket->id, //tiket berasal dari fungsi model eloquent transaction & id dari tabel tikets
+            'nama_tiket' => $this->tiket->nama_tiket,
+            'harga_tiket'=> $this->tiket->harga_tiket,
+            'total'      => $this->qty * $this->tiket->harga_tiket,
+            'qty'        => $this->qty,
+            'status'     => $this->status,
 
         ];
     }
